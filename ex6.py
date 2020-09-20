@@ -1,5 +1,5 @@
 import math
-def Patternunlock(n, hits):
+def PatternUnlock(n, hits):
     result = 0
     button1 = 0
     button2 = 0
