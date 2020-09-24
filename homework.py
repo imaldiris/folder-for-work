@@ -1,72 +1,85 @@
-from sys import exit
-
-bag =[]
-
-Eilengar = 0
-
-print("""Во время ожесточенной схватки в небе Тай-Ферры ваш
-    корвет был подбит вражескими стервятникоми, вы невероятным
-    чудом экстренно посадили его в лесах Торсилы близ вечных пустошей,
-    после столкновения с повернустью вы помните только звуки тонн металла,
-    встретившие поверхность планеты и резкий удар головй о панель управления.""")
-print("""Очнувшись, вы осматриваете место удара в куске металла,
-    проверяя на кровотечение и выявляя глубину ссадины,осмотревшись выходите через мостик
-    в коробельные коридоры, чтобы найти выживших, битва была жестокой
-    и спустя час схватки, Эйленгар доложил, что половина орудий выведена
-    из строя, а Крис и Тайсил были убиты от разрывающихся орудий батареи.
-    У вас не было особой надежды найти живых и всё же вы продолжаете.""" )
-
-def shipfall():
-    print("""Перед вами:\"проход к батарее\", \"отсек двигателя\" и \"лестница\"
-        к турболаерным орудиям, месту службы Эйленгар""")
-    while True:
-        Follow = input("> ")
-        if Follow == "лестница":
-            stairway()
-        elif Follow == "проход к батарее":
-            turrets_room()
-        elif Follow == "отсек двигателя":
-            engine_room()
+def WordSearch(lenght, string, subs):
+    word = ''
+    current_list = []
+    current_string = ''
+    count = 0
+    check = ''
+    global_list = []
+    for i in string:
+        if i != ' ':
+            if count == len(string) - 1:
+                word = check + i
+            else:
+                count += 1
+                check += i
+                continue
         else:
-            print("Выбери путь")
+            count += 1
+            word = check[:]
+            check = ''
+        if len(current_string + word) <= lenght:
+            current_string += word
+            if len(current_string) < lenght:
+                current_string += ' '
+        else:
+            if len(word) < lenght:
+                current_list.append(current_string)
+                global_list.append(current_list)
+                current_list = []
+                current_string = word[:] + ' ' if len(word) < lenght else word[:]
+            if len(word) == lenght:
+                current_list.append(current_string)
+                global_list.append(current_list)
+                current_list = []
+                current_string = word[:]
+                current_list.append(current_string)
+                global_list.append(current_list)
+                current_string = ''
+                current_list = []
+            while len(word) > lenght:
+                edge = lenght - len(current_string)
+                current_string += word[0:edge]
+                current_list.append(current_string)
+                word = word[edge:]
+                global_list.append(current_list)
+                current_list = []
+                current_string = ''
+                if len(word) <= lenght:
+                    current_string += word if len(word) == lenght else word + ' '
+                    current_list = []
+    if len(current_string) != 0:
+        a = [current_string]
+        global_list.append(a)
+    check_list = []
+    word = ''
+    print(global_list)
+    if len(subs) > lenght:
+        check_list = '0' * len(global_list)
+        return list(check_list)
+    for i in global_list:
+        if ' ' not in i[0]:
+            check_list.append(1) if subs == i[0] else check_list.append(0)
+        else:
+            if subs in i[0]:
+                check = i[0]
+                for k in range(0, len(check)):
+                    if check[k] != ' ':
+                        word += check[k]
+                    elif k == (len(check) - 1):
+                        word += check[k] if check[k] != ' ' else ''
+                        check_list.append(1) if word == subs else check_list.append(0)
+                        word = ''
+                    else:
+                        if word == subs:
+                            check_list.append(1)
+                            break
+                        else:
+                            word = ''
+            else:
+                check_list.append(0)
 
-def stairway():
-
-    if Eilengar == 0:
-        print("""   Помня о последнем рапорте Эйленгра, вы решаете, что он может
-        быть жив и решили осмотреть отсек турболазерных батарей""")
-        print("""   Проход заблокирован, обесточенный корабль не позволяет системе
-        открыть отсек и вы можете \"использовать балку\" как рычаг или
-        \"взорвать створки\" ручной плазменной гранатой""")
-        choise = input("> ")
-        if choise == "взорвать створки":
-            print("Дверь заклинило насовсем")
-        elif choise == "использовать балку":
-            print("""   Дверь начала со скрипом поддваться и вскоре вы увидели Эйленгара,
-            он был без сознания, вы встряхнули его и он замычал. Очнувшись он
-            поблагодарил вас, вы осмотрели комнату и подобрали штурмовую винтовку с
-            плазменным резаком, после возвращаетесь обратно""")
-            a = ['штурмовая винтовка','плазменный резак']
-            bag.extend(a)
-            a.clear()
-            Eilengar = 1
-    else:
-        print("Перед вами пустая комната и вы возвращаетесь назад")
-    shipfall()
-
-def turrets_room():
-    if 'плазменный резак' in bag:
-        print("Перед вами заблокировання деврь..... \"воспользоваться резаком\"")
-        choise = input()
-        if choise == "воспользоваться резаком":
-            print("Рожков")
-            shipfall()
-    else:
-        shipfall
+    return check_list
 
 
-def dead(reason):
-    print(f"Вы погибли - {reason}")
-    exit(0)
-
-shipfall()
+a = WordSearch(5, 'Тогда на первом шаге будет получена такая последовательность строк:', 'тогда')
+print(a)

@@ -52,7 +52,6 @@ def WordSearch(lenght, string, subs):
         global_list.append(a)
     check_list = []
     word = ''
-    print(global_list)
     if len(subs) > lenght:
         check_list = '0' * len(global_list)
         return list(check_list)
@@ -80,6 +79,3 @@ def WordSearch(lenght, string, subs):
 
     return check_list
 
-
-a = WordSearch(5, 'Тогда на первом шаге будет получена такая последовательность строк:', 'тогда')
-print(a)

@@ -1,4 +1,6 @@
 import math
+
+
 def PatternUnlock(n, hits):
     result = 0
     button1 = 0
@@ -14,10 +16,10 @@ def PatternUnlock(n, hits):
                  9, [3, 3]]
     for i in range(0, n - 1):
         button1 = hits[i]
-        button2 = hits[i+1]
-        x1 = cord_list[cord_list.index(button1)+1]
-        x2 = cord_list[cord_list.index(button2)+1]
-        result += math.sqrt(math.fabs(x2[0] - x1[0]) + math.fabs(x2[1] - x1[1]))
+        button2 = hits[i + 1]
+        x1 = cord_list[cord_list.index(button1) + 1]
+        x2 = cord_list[cord_list.index(button2) + 1]
+        result += math.sqrt(math.fabs(x2[0] - x1[0]) + math.fabs(x2[1] - x1[1]))  # ошибка
     result = str(float('{:.5f}'.format(result)))
     key = ''
     for i in result:
