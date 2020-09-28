@@ -30,7 +30,7 @@ def encode(string, edge, encode):
                 global_list.append([string[0:edge]])
                 string = string[edge:]
             else:
-                spaces = (edge - len(string)) * ' '  # пробелы в конце
+                spaces = (edge - len(string)) * ' '  # пробелы в конце, чтобы заполнить строку
                 global_list.append([string[:] + spaces])
                 string = ''
     else:
@@ -38,10 +38,12 @@ def encode(string, edge, encode):
         global_list = [[i] for i in list]
     for i in range(0, edge):  # вывод строки в нужном порядке(шифровка)
         for word in global_list:
-            if word[0][i:i+1] != ' ':
-                result_string += word[0][i:i+1].lower()
-            if (word == ' ' or global_list.index(word) == len(global_list) - 1) and encode == True:
+            if word[0][i:i + 1] != ' ':
+                result_string += word[0][i:i + 1].lower()
+            if global_list.index(word) == len(global_list) - 1 and encode == True:  # Добавление пробелов
                 result_string += ' '
+    if result_string[-1] == ' ':
+        result_string = result_string[:-1]
     return result_string
 
 
@@ -50,3 +52,4 @@ def TheRabbitsFoot(string, bool):
     edge = matrix(changed_string)
     result_string = encode(changed_string, edge, bool)
     return result_string
+
