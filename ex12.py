@@ -48,9 +48,6 @@ def MassVote(n, votes):
     return victory
 
 
-a = MassVote(4, [150, 10, 100, 100])
-print(a)
-
 
 
 
