@@ -1,4 +1,5 @@
 def UFO(N, data, octal):
+    """Функция перевода 8\16 числа в 10ое"""
     new_date = []
     for i in data:
         if octal is True:
