@@ -135,25 +135,3 @@ def BastShoe(command):
     if com == 5:
         result = redo()
         return result
-
-
-a = BastShoe('1 привет')
-print(a)
-a = BastShoe('1 , Джон!')
-print(a)
-a = BastShoe('27')
-print(a)
-a = BastShoe('4')
-print(a)
-a = BastShoe('1  How are you?')
-print(a)
-a = BastShoe('4')
-print(a)
-a = BastShoe('4')
-print(a)
-a = BastShoe('4')
-print(a)
-a = BastShoe('50')
-print(a)
-a = BastShoe('5')
-print(a)
