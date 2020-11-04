@@ -14,7 +14,7 @@ def transform_func(data_list):
     return result_list
 
 
-def TransformTransform(data_list):
+def TransformTransform(data_list, n):
     """Основная функция - повторение два раза функции трансформации и определение четности-нечетности функции."""
     result = transform_func(transform_func(data_list))
     total = 0
