@@ -1,9 +1,6 @@
-global result_list
-result_list = []
-
-
 def transform_func(data_list):
     """Цикл в цикле с выбором диапазона и добавлением максимума в реультат из этого диапазона."""
+    result_list = []
     for i in range(0, len(data_list)):
         for j in range(0, len(data_list) - i):
             k = i + j
