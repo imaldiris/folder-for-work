@@ -28,4 +28,5 @@ def _printParenthesis(str, pos, n, open, close):
 def BalancedParentheses(n):
     str = [""] * 2 * n
     result = printParenthesis(str, n)
-    return result[:-1]
+    result = result[:-1]
+    return result
